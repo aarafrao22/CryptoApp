@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -91,15 +92,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnUp:
                 price = price + 0.0001;
                 txtPrice.setText(String.valueOf(price));
-                txtProfit.setTextColor(R.color.green);
-                txtPercentage.setTextColor(R.color.green);
+                txtProfit.setTextColor(Color.parseColor("#009688"));
+                txtPercentage.setTextColor(Color.parseColor("#009688"));
+
+
                 break;
 
             case R.id.btnDown:
                 price = price - 0.0001;
                 txtPrice.setText(String.valueOf(price));
-                txtProfit.setTextColor(R.color.red);
-                txtPercentage.setTextColor(R.color.red);
+                txtProfit.setTextColor(Color.parseColor("#BA0202"));
+                txtPercentage.setTextColor(Color.parseColor("#BA0202"));
                 break;
         }
     }
