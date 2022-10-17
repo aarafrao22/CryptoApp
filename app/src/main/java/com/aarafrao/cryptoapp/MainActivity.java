@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView btnLeverage, txtSizeUsdt, txtPrice, txtMargin, txtPercentage, txtProfit;
+    private TextView btnLeverage, txtSizeUsdt, txtPriceA, txtPrice, txtMargin, txtPercentage, txtProfit;
     private CardView btnDown, btnUp;
     int leverage = 1;
-    double size, margin, price;
+    double size, margin, markPrice, entryPrice;
 
 
     @Override
@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtPercentage = findViewById(R.id.txtPercentage);
         txtProfit = findViewById(R.id.txtProfit);
         txtSizeUsdt = findViewById(R.id.txtSizeUsdt);
+        txtPriceA = findViewById(R.id.txtPriceA);
 
-        price = Double.valueOf(txtPrice.getText().toString());
+        markPrice = Double.valueOf(txtPrice.getText().toString());
         margin = Double.valueOf(txtMargin.getText().toString());
+        entryPrice = Double.valueOf(txtPriceA.getText().toString());
 
         size = margin * leverage;
         txtSizeUsdt.setText(String.valueOf(size));
@@ -90,19 +92,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnUp:
-                price = price + 0.0001;
-                txtPrice.setText(String.valueOf(price));
-                txtProfit.setTextColor(Color.parseColor("#009688"));
-                txtPercentage.setTextColor(Color.parseColor("#009688"));
+                markPrice = markPrice + 0.0001;
+                txtPrice.setText(String.valueOf(markPrice));
+
+                if (markPrice > entryPrice) {
+                    txtProfit.setTextColor(Color.parseColor("#009688"));
+                    txtPercentage.setTextColor(Color.parseColor("#009688"));
+                } else if (markPrice < entryPrice) {
+                    txtProfit.setTextColor(Color.parseColor("#BA0202"));
+                    txtPercentage.setTextColor(Color.parseColor("#BA0202"));
+                }
 
 
                 break;
 
             case R.id.btnDown:
-                price = price - 0.0001;
-                txtPrice.setText(String.valueOf(price));
-                txtProfit.setTextColor(Color.parseColor("#BA0202"));
-                txtPercentage.setTextColor(Color.parseColor("#BA0202"));
+                markPrice = markPrice - 0.0001;
+                txtPrice.setText(String.valueOf(markPrice));
+
+                if (markPrice > entryPrice) {
+                    txtProfit.setTextColor(Color.parseColor("#009688"));
+                    txtPercentage.setTextColor(Color.parseColor("#009688"));
+                } else if (markPrice < entryPrice) {
+                    txtProfit.setTextColor(Color.parseColor("#BA0202"));
+                    txtPercentage.setTextColor(Color.parseColor("#BA0202"));
+                }
                 break;
         }
     }

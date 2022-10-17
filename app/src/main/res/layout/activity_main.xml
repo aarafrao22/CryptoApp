@@ -38,8 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="127.07"
-                android:fontFamily="@font/helvetica_condensed"
                 android:textColor="#0BBCAB"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -67,8 +67,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="+800%"
-                android:fontFamily="@font/helvetica_condensed"
                 android:textColor="#0BBCAB"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -93,10 +93,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="0.47%"
                 android:textColor="#0BBCAB"
                 android:textSize="18sp"
-                android:fontFamily="@font/helvetica_condensed"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -146,8 +146,8 @@
                 android:id="@+id/txtSizeUsdt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="127.07"
-                android:fontFamily="@font/helvetica_condensed"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -172,10 +172,10 @@
                 android:id="@+id/txtMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="3.19"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:fontFamily="@font/helvetica_condensed"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -196,9 +196,12 @@
                 android:textColor="#848484" />
 
             <TextView
+                android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="127.07"
+                android:maxLength="6"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="3.509066"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -221,12 +224,12 @@
                 android:textColor="#848484" />
 
             <TextView
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtPriceA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3.509066"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:maxLength="6"
-                android:fontFamily="@font/helvetica_condensed"
+                android:text="3.509066"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -252,10 +255,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="127.07"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:fontFamily="@font/helvetica_condensed"
                 android:textStyle="bold" />
         </LinearLayout>
 
