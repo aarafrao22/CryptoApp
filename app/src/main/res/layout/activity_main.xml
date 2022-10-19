@@ -38,12 +38,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
+                android:maxLength="6"
                 android:text="127.07"
-                android:textColor="#0BBCAB"
+                android:textColor="#3CBA8B"
                 android:textSize="26sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linearLayout2h"
@@ -67,9 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
+                android:maxLength="7"
                 android:text="+800%"
-                android:textColor="#0BBCAB"
+                android:textColor="#3CBA8B"
                 android:textSize="26sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -93,9 +96,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
                 android:text="0.47%"
-                android:textColor="#0BBCAB"
+                android:textColor="#3CBA8B"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -146,7 +149,7 @@
                 android:id="@+id/txtSizeUsdt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
                 android:text="127.07"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -172,7 +175,7 @@
                 android:id="@+id/txtMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
                 android:text="3.19"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -199,8 +202,8 @@
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/din1451alt"
                 android:maxLength="6"
-                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="3.509066"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -227,7 +230,7 @@
                 android:id="@+id/txtPriceA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
                 android:maxLength="6"
                 android:text="3.509066"
                 android:textColor="@color/white"
@@ -255,7 +258,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/din1451alt"
                 android:text="127.07"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -362,5 +365,81 @@
             android:text="Down"
             android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/edMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Enter Margin"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/btnUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnDown" />
+
+    <EditText
+        android:id="@+id/edPercent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Enter Percent"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edMargin"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <EditText
+        android:id="@+id/edProfit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Profit"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/edMargin"
+        app:layout_constraintTop_toBottomOf="@+id/edMargin"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnProfUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edMargin" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnProfDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toEndOf="@+id/btnProfUp"
+        app:layout_constraintTop_toBottomOf="@+id/edMargin" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnPercentUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnPercentDown"
+        app:layout_constraintTop_toBottomOf="@+id/edMargin" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnPercentDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edMargin" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

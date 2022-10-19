@@ -10,8 +10,11 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,7 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView btnLeverage, txtSizeUsdt, txtPriceA, txtPrice, txtMargin, txtPercentage, txtProfit;
     private CardView btnDown, btnUp;
     int leverage = 1;
-    double size, margin, markPrice, entryPrice;
+    EditText edMargin, edProfit, edPercent;
+    double size, margin, markPrice, entryPrice, unRealizedPNL, percentage;
 
 
     @Override
@@ -29,7 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnLeverage = findViewById(R.id.btnLeverage);
         btnUp = findViewById(R.id.btnUp);
+        edProfit = findViewById(R.id.edProfit);
+        edPercent = findViewById(R.id.edPercent);
         txtPrice = findViewById(R.id.txtPrice);
+        edMargin = findViewById(R.id.edMargin);
         txtMargin = findViewById(R.id.txtMargin);
         btnDown = findViewById(R.id.btnDown);
         txtPercentage = findViewById(R.id.txtPercentage);
@@ -46,6 +53,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         clickListeners();
 
+        edMargin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() > 0) {
+                    margin = Double.valueOf(edMargin.getText().toString());
+                    size = margin * leverage;
+                    txtMargin.setText(String.valueOf(margin));
+                }
+            }
+        });
+        edPercent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() > 0) {
+                    percentage = Double.valueOf(edPercent.getText().toString());
+                    txtPercentage.setText(String.valueOf(Math.round(percentage)));
+                }
+            }
+        });
+        edProfit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() > 0) {
+                    unRealizedPNL = Double.valueOf(edProfit.getText().toString());
+                    txtProfit.setText(String.valueOf(unRealizedPNL));
+                }
+            }
+        });
 
     }
 
@@ -76,6 +141,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 leverage = which + 1;
                 size = margin * leverage;
                 txtSizeUsdt.setText(String.valueOf(size));
+
+                txtPrice.setText(String.valueOf(markPrice));
+                unRealizedPNL = (markPrice - entryPrice) * leverage;
+                txtProfit.setText(String.valueOf(unRealizedPNL));
+
+
+                if (markPrice > entryPrice) {
+                    txtProfit.setTextColor(Color.parseColor("#009688"));
+                    txtPercentage.setTextColor(Color.parseColor("#009688"));
+                } else if (markPrice < entryPrice) {
+                    txtProfit.setTextColor(Color.parseColor("#BA0202"));
+                    txtPercentage.setTextColor(Color.parseColor("#BA0202"));
+                }
             }
         });
         builderSingle.show();
@@ -94,12 +172,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnUp:
                 markPrice = markPrice + 0.0001;
                 txtPrice.setText(String.valueOf(markPrice));
+                unRealizedPNL = (markPrice - entryPrice) * leverage * 10;
+                txtProfit.setText(String.valueOf(unRealizedPNL));
 
+                percentage = (markPrice / entryPrice) * leverage * 100;
+                txtPercentage.setText(String.valueOf(Math.round(percentage * 100.0) / 100.0));
                 if (markPrice > entryPrice) {
                     txtProfit.setTextColor(Color.parseColor("#009688"));
                     txtPercentage.setTextColor(Color.parseColor("#009688"));
                 } else if (markPrice < entryPrice) {
                     txtProfit.setTextColor(Color.parseColor("#BA0202"));
+                    txtPercentage.setText("-" + String.valueOf(Math.round(percentage * 100.0) / 100.0).concat("%"));
                     txtPercentage.setTextColor(Color.parseColor("#BA0202"));
                 }
 
@@ -109,12 +192,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnDown:
                 markPrice = markPrice - 0.0001;
                 txtPrice.setText(String.valueOf(markPrice));
-
+                unRealizedPNL = (markPrice - entryPrice) * leverage * 10;
+                txtProfit.setText(String.valueOf(unRealizedPNL));
+                percentage = (markPrice / entryPrice) * leverage * 100;
+                txtPercentage.setText(String.valueOf(Math.round(percentage * 100.0) / 100.0).concat("%"));
                 if (markPrice > entryPrice) {
                     txtProfit.setTextColor(Color.parseColor("#009688"));
                     txtPercentage.setTextColor(Color.parseColor("#009688"));
                 } else if (markPrice < entryPrice) {
                     txtProfit.setTextColor(Color.parseColor("#BA0202"));
+                    txtPercentage.setText("-" + String.valueOf(Math.round(percentage * 100.0) / 100.0).concat("%"));
                     txtPercentage.setTextColor(Color.parseColor("#BA0202"));
                 }
                 break;
